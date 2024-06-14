@@ -132,7 +132,7 @@ const SMSWaitingPage: React.FC = () => {
     };
 
     return (
-        <Container sx={{ pb: 2, height: '100%', overflowX: 'hidden', overflowY: 'scroll' }}>
+        <Container sx={{ pb: 2, height: '100%', overflowX: 'hidden', overflowY: 'hidden' }}>
             {loading ? (
                 <Box display="flex" alignItems="center" justifyContent="center" flexDirection={"column"} pt={4} sx={{ background: "transparent", zIndex: 2147483648 }}>
                     <CircularProgress />

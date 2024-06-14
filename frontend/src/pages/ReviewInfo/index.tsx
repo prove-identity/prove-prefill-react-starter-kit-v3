@@ -164,7 +164,7 @@ const ReviewInfo: React.FC = () => {
     };
 
     return (
-        <Container sx={{ pb: 2, height: '100%', overflowX: 'hidden', overflowY: 'scroll' }}>
+        <Container sx={{ pb: 2, height: '100%', overflowX: 'hidden', overflowY: 'hidden' }}>
             {loading || isLoading ? (
                 <Box display="flex" alignItems="center" justifyContent="center" pt={4}>
                     <CircularProgress />
