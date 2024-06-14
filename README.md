@@ -40,6 +40,8 @@ npm run dev
 ```
 9. Open your browser and search http://localhost:3000/
 
-You should see this afterwards
+<p align="center">
+You should see this afterwards 🎉
+</p>
 ![image](https://github.com/prove-identity/prove-prefill-react-starter-kit-v3/assets/113944604/6b12e086-af1a-45e8-bae3-e20f60c9a01e)
 
