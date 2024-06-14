@@ -1,4 +1,4 @@
-# Welcome to Official Prove Pre-Fill Starter Kit
+# Welcome to the Official Prove Pre-Fill Starter Kit
 Welcome to the Prove Pre-Fill Starter Kit! This project will showcase how the Prove Pre-Fill standard is expected to be implemented. This project combines both the Frontend and Backend with Prove Server & Client Side SDK's to give you a solid starting point for implementation. Get rolling now!
 
 ## Tech Stack
