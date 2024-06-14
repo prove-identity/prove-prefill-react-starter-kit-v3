@@ -43,5 +43,6 @@ npm run dev
 <p align="center">
 You should see this afterwards 🎉
 </p>
-![image](https://github.com/prove-identity/prove-prefill-react-starter-kit-v3/assets/113944604/6b12e086-af1a-45e8-bae3-e20f60c9a01e)
+![image](https://github.com/prove-identity/prove-prefill-react-starter-kit-v3/assets/113944604/526d72cb-7d23-4e87-977b-37e9bc25a7e1)
+
 
