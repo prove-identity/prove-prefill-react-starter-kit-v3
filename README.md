@@ -39,6 +39,8 @@ npm install
 npm run dev
 ```
 9. Open your browser and search http://localhost:3000/
+
+
 ![image](https://github.com/prove-identity/prove-prefill-react-starter-kit-v3/assets/113944604/526d72cb-7d23-4e87-977b-37e9bc25a7e1)
 
 ## Plug And Play - Sandbox Mode
