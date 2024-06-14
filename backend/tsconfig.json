@@ -1,0 +1,37 @@
+{
+    "compilerOptions": {
+        "target": "ES2021",
+        "module": "CommonJS",
+        "sourceMap": true,
+        "strict": true,
+        "resolveJsonModule": true,
+        "strictNullChecks": true,
+        "types": ["node"],
+        "esModuleInterop": true,
+        "noUnusedLocals": false,
+        "allowSyntheticDefaultImports": true,
+        "experimentalDecorators": true,
+        "baseUrl": "./",
+        "allowJs": true,        
+        "typeRoots": [
+            "./src/types",
+            "./node_modules/@types"
+          ],
+        "paths": {
+          "@src/*": [
+            "./src/*"
+          ], 
+          "@src": ["src"],
+            "tests/*": ["tests/*"],
+        },
+        "outDir": "build",
+        "removeComments": true
+    },
+    "compileOnSave": true,
+    "include": [
+        "./src/**/*",
+        "./src/types/**/*",
+        "tests/**/*.ts"
+      ],
+    "exclude": ["node_modules"]
+}

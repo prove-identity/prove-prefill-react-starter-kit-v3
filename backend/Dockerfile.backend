@@ -1,0 +1,31 @@
+# Use an official Node.js runtime as a parent image
+FROM node:18-alpine AS backend
+
+# Set the working directory to /app
+WORKDIR /app
+
+# Install build dependencies for native modules
+RUN apk add --no-cache --virtual .gyp-build-deps \
+        python3 \
+        make \
+        g++ 
+
+# Copy package.json, yarn.lock, .env, and potentially other necessary files
+COPY --chown=node:node package.json yarn.lock ./
+
+# Install dependencies
+RUN npm run install
+
+# Remove build dependencies to keep the image clean and small
+RUN apk del .gyp-build-deps
+
+# Copy the rest of the application code to the working directory
+COPY --chown=node:node . ./
+
+# Build the TypeScript code 
+RUN npm run build
+
+# Set the command to run the application
+EXPOSE 8080
+
+CMD ["npm", "run", "serve"]

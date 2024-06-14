@@ -1,0 +1,29 @@
+# Use an official Node.js runtime as a parent image
+FROM node:18-alpine AS frontend
+
+# Set the working directory to /app
+WORKDIR /app
+
+# Copy package.json and other necessary files
+COPY --chown=node:node package.json yarn.lock ./
+
+# Install dependencies
+RUN npm install
+
+# Copy the rest of the application code to the working directory
+COPY --chown=node:node . ./
+
+# Build the TypeScript code 
+RUN npm run build
+
+# Production environment
+FROM nginx:stable-alpine
+
+# Copy built files from the frontend stage
+COPY --from=frontend /app/build /usr/share/nginx/html
+
+# Expose port 80 for the Nginx server
+EXPOSE 80
+
+# Start Nginx in the foreground when the container starts
+CMD ["nginx", "-g", "daemon off;"]

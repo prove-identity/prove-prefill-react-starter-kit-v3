@@ -1,0 +1,78 @@
+{
+    "global": {
+        "genericError": "We ran into an error. Please refresh and try again.",
+        "identityError": "An error occurred during the verification process. Please try again."
+    },
+    "authAgreement": {
+        "termsAndConditions1": "By clicking 'Continue' you accept our ",
+        "termsAndConditions2": "Terms and Conditions"
+    },
+    "challengePage": {
+        "title": "Let's begin by finding your info",
+        "subTitle": "We can prefill some of this request like your name, address, and contact info for you."
+    },
+    "otpEntry": {
+        "title": "We sent you a 6-digit verification code by text message to your phone number. Please enter it below:",
+        "sendingOtp": "Sending OTP...",
+        "failureSendingOtp": "Could not send OTP!",
+        "continueButton": "Verify Code"
+    },
+    "continueAuth": {
+        "successMessage": "Your identity is verified. Please go back to the app to complete this process.",
+        "errorMessage": "An error occurred and you could not be verified. Please contact support."
+    },
+    "smsWaiting": {
+        "title": "Verify your mobile",
+        "subTitle": "Please click on the link we just sent to phone number ending in ",
+        "didNotRecieve": "Didn't recieve the link?",
+        "returnToChallenge": "Error sending link; please click to return to Challenge Page",
+        "successMessage": "Your identity is verified. Please close this tab and continue your session on your mobile device.",
+        "errorMessage": "An error occurred and you could not be verified. Please contact support."
+    },
+    "reviewInfo": {
+        "title": "Your Information",
+        "subTitle": "All fields are required unless stated otherwise",
+        "continueButton": "Confirm"
+    },
+    "dataCollection": {
+        "ssn": {
+            "label": "Social Security Number",
+            "errorText": "Enter the last 4 of your social security number",
+            "moreInfo": "By providing your last 4 of your SSN, we will attempt to find your information to expedite your request.",
+            "disclaimer": "This is required by finance regulations"
+        },
+        "phone": {
+            "label": "Phone Number"
+        },
+        "firstName": {
+            "label": "First Name",
+            "errorText": "Enter your legal first name"
+        },
+        "lastName": {
+            "label": "Last Name",
+            "errorText": "Enter your legal last name"
+        },
+        "dob": {
+            "label": "Date of Birth"
+        },
+        "address": {
+            "label": "Address",
+            "errorText": "Enter your full street address"
+        },
+        "extendedAddress": {
+            "label": "Extended Address",
+            "errorText": "Enter your extended address (apt. number, suite, etc...)"
+        },
+        "city": {
+            "label": "City"
+        },
+        "region": {
+            "label": "State",
+            "errorText": "Enter your state"
+        },
+        "postalCode": {
+            "label": "Zip Code",
+            "errorText": "Enter your zip code"
+        }
+    }
+}
