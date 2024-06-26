@@ -37,7 +37,7 @@ export const v3StartRequest = [
       const sdk = proveBackendSdk.getInstance();
       const { v3StartResponse } = await sdk.v3.v3StartRequest({
         phoneNumber,
-        last4SSN,
+        ssn: last4SSN,
         flowType,
         finalTargetUrl: finalTargetUrl || 'http://127.0.0.1:3000/sms-result',
       } as proveInterfaces.V3StartRequest);
