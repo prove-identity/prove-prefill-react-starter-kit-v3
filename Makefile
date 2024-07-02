@@ -23,7 +23,7 @@ create-frontend-env:
 # Debug target to check created .env file
 .PHONY: debug-env
 debug-env: create-frontend-env
-	@cat frontend/.env
+	cat frontend/.env
 
 # Build the frontend Docker image
 .PHONY: build-frontend
