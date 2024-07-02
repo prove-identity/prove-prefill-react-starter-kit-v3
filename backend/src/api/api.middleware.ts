@@ -10,6 +10,7 @@ import { APP_DOMAIN } from '@src/(global_constants)';
 
 var whitelist = [
     'http://localhost:3000',
+    'http://localhost',
     APP_DOMAIN
 ];
 

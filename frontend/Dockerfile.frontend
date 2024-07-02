@@ -1,3 +1,7 @@
+# Load environment variables from .env file
+ARG REACT_APP_BASE_API_URL
+ARG REACT_APP_ENV
+
 # Use an official Node.js runtime as a parent image
 FROM node:18-alpine AS frontend
 
@@ -5,7 +9,7 @@ FROM node:18-alpine AS frontend
 WORKDIR /app
 
 # Copy package.json and other necessary files
-COPY --chown=node:node package.json yarn.lock ./
+COPY package.json package-lock.json ./
 
 # Install dependencies
 RUN npm install
@@ -13,7 +17,11 @@ RUN npm install
 # Copy the rest of the application code to the working directory
 COPY --chown=node:node . ./
 
-# Build the TypeScript code 
+# Set the build arguments as environment variables for the build process
+ENV REACT_APP_BASE_API_URL=$REACT_APP_BASE_API_URL
+ENV REACT_APP_ENV=$REACT_APP_ENV
+
+# Build the TypeScript code
 RUN npm run build
 
 # Production environment

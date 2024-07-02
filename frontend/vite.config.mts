@@ -4,7 +4,7 @@ import viteTsconfigPaths from 'vite-tsconfig-paths';
 import envCompatible from 'vite-plugin-env-compatible';
 
 export default ({ mode }) => {
-    process.env = Object.assign(process.env, loadEnv(mode, process.cwd(), ''));
+    process.env = Object.assign(process.env, loadEnv(mode, process.cwd(), 'REACT_APP_'));
 
     return defineConfig({
         define: {
