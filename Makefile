@@ -14,21 +14,11 @@ endif
 REACT_APP_BASE_API_URL := $(REACT_APP_BASE_API_URL)
 REACT_APP_ENV := $(REACT_APP_ENV)
 
-# Create a temporary .env file with the necessary variables
-.PHONY: create-frontend-env
-create-frontend-env:
-	echo "REACT_APP_BASE_API_URL=$(REACT_APP_BASE_API_URL)" > frontend/.env
-	echo "REACT_APP_ENV=$(REACT_APP_ENV)" >> frontend/.env
-
-# Debug target to check created .env file
-.PHONY: debug-env
-debug-env: create-frontend-env
-	cat frontend/.env
-
 # Build the frontend Docker image
 .PHONY: build-frontend
-build-frontend: create-frontend-env
+build-frontend: 
 	cd frontend && docker build \
+	    --no-cache \
 		--build-arg REACT_APP_BASE_API_URL=$(REACT_APP_BASE_API_URL) \
 		--build-arg REACT_APP_ENV=$(REACT_APP_ENV) \
 		-t $(FRONTEND_IMAGE) -f Dockerfile.frontend .
