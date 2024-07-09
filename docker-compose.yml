@@ -1,0 +1,25 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.frontend
+      args:
+        REACT_APP_BASE_API_URL: ${REACT_APP_BASE_API_URL}
+        REACT_APP_ENV: ${REACT_APP_ENV}
+    ports:
+      - "80:80"
+    environment:
+      - REACT_APP_BASE_API_URL=${REACT_APP_BASE_API_URL}
+      - REACT_APP_ENV=${REACT_APP_ENV}
+  
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.backend
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - PROVE_CLIENT_ID=${PROVE_CLIENT_ID}
+      - PROVE_CLIENT_SECRET=${PROVE_CLIENT_SECRET}
+      - APPLICATION_DOMAIN=${APPLICATION_DOMAIN}

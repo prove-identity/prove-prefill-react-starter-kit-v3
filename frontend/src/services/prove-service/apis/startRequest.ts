@@ -17,15 +17,6 @@ export interface StartRequestPayload {
     phoneNumber: string;
     last4SSN: string;
     finalTargetUrl?: string;
-    //dob: string;
-    //finalTargetUrl: https://www.example.com/landing-page
-    //emailAddress: jdoe@example.com
-    //phoneNumber: "12065550100"
-    //last4SSN: "1234"
-    //dob: 2024-05-02
-    //ipAddress: 10.0.0.1
-    //deviceId: 713189b8-5555-4b08-83ba-75d08780aebd
-    //flowType: web
 }
 
 export interface StartRequestResponse {
