@@ -12,6 +12,15 @@ Welcome to the Prove Pre-Fill Starter Kit! This project will showcase how the Pr
     - [Prerequisites](#prerequisites-1)
     - [Step-by-Step Deployment](#step-by-step-deployment)
     - [Updating the Application](#updating-the-application)
+    - [Setting up Static IP in AWS (Elastic Beanstalk)](#setting-up-static-ip-in-aws-elastic-beanstalk)
+      - [New VPC](#new-vpc)
+      - [Existing VPC](#existing-vpc)
+        - [1. Create a Public VPC Subnet](#1-create-a-public-vpc-subnet)
+        - [2. Create and Attach an Internet Gateway to the VPC](#2-create-and-attach-an-internet-gateway-to-the-vpc)
+        - [3. Set Up a NAT Gateway](#3-set-up-a-nat-gateway)
+        - [4. Create a Routing Table](#4-create-a-routing-table)
+        - [5. Create a High Availability Elastic Beanstalk Instance](#5-create-a-high-availability-elastic-beanstalk-instance)
+
 
 ## Tech Stack
 **Client:** React, MaterialUI
@@ -219,3 +228,69 @@ Whenever you make changes to your application and want to redeploy, simply run:
 
 ```sh
 make deploy
+```
+***
+
+### Setting up Static IP in AWS (Elastic Beanstalk)
+Before gaining production access to Prove APIs, your backend APIs must have a static IP (Elastic IP) to provide to Prove during the production onboarding process.
+
+#### New VPC
+
+1. Navigate to your VPC console and select "Create VPC" in the top panel located next to "Actions".
+2. Under the "Resources to Create" heading, select "VPC and More".
+   - You will need both public and private subnets.
+   - Public subnets will be used by the load balancer.
+   - Private subnets will be used by the instances (EC2).
+3. Select "2" for "Number of Public Subnets".
+4. Select "2" for "Number of Private Subnets".
+   - Adjust the count to select more or less depending on the individual needs of your application.
+5. Select an option for "NAT Gateway ($)".
+   - Choose "in 1 AZ" or "1 per AZ" depending on the individual needs of your application.
+6. (Optional) Select VPC endpoints if your application will be accessing S3 privately (for more security).
+7. Under "DNS Options", ensure both "Enable DNS hostnames" and "Enable DNS resolution" are enabled.
+8. Review Selections and select "Create VPC"
+9. VPC is now created
+   1.  Load Balancer will need to use public subnets 
+   2.  EC2 Instances will need to use private subnets to route through NAT gateway
+   3.  Note: Cannot change VPC after an Elastic Beanstalk environment is already setup, so this step creating a new VPC will need to proceed creation of ElasticBeanstalk environment
+
+#### Existing VPC
+
+##### 1. Create a Public VPC Subnet
+
+1. Navigate to your VPC console and select “Subnets” in the side panel.
+2. Click on “Create subnet”.
+3. Select an existing VPC and specify an IPv4 CIDR block that is within the CIDR address range of the selected VPC.
+   - Example: If your VPC CIDR is `172.31.0.0/16`, you can specify a subnet CIDR block of `172.31.32.0/20`.
+
+##### 2. Create and Attach an Internet Gateway to the VPC
+
+1. In the VPC console, select “Internet Gateway” from the side panel.
+2. Click on “Create Internet Gateway”.
+3. After creating the internet gateway, click the “Attach to a VPC” button.
+4. Select the VPC created in the previous step.
+   - Note: A VPC can only be attached to one internet gateway.
+
+##### 3. Set Up a NAT Gateway
+
+1. Go to the AWS VPC service page and select “NAT Gateway” in the left navigation.
+2. Click on “Create NAT Gateway”.
+3. Provide a name, select the previously created subnet, choose “Public” connectivity type, and select an Elastic (static) IP.
+   - If you haven't created an Elastic IP, click on the "Allocate Elastic IP" button to automatically assign and associate one with the Gateway.
+
+##### 4. Create a Routing Table
+
+1. In the VPC screen, select “Subnets” from the left navigation and choose the subnet specified in the previous step.
+2. Click on the “Route table” tab and select the name of the route table.
+3. In the route table, add a route and associate the destination `0.0.0.0/0` with the NAT gateway you just created as the target.
+   - This ensures that any outbound traffic from within the subnet will go through the NAT gateway.
+
+##### 5. Create a High Availability Elastic Beanstalk Instance
+
+1. Go to the Elastic Beanstalk service page and click on “Create Environment”.
+   - If you don't have an application, you will need to create one first.
+2. Select “Web server environment”.
+3. Provide a name for the environment and select a target platform.
+4. Click on “Configure more options”.
+5. Scroll to the top of the page and select a desired instance type. High availability is recommended for production instances.
+6. Click

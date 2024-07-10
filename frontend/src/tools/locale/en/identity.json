@@ -25,7 +25,7 @@
         "title": "Verify your mobile",
         "subTitle": "Please click on the link we just sent to phone number ending in ",
         "didNotRecieve": "Didn't recieve the link?",
-        "returnToChallenge": "Error sending link; please click to return to Challenge Page",
+        "returnToChallenge": "Please click to return to Challenge Page",
         "successMessage": "Your identity is verified. Please close this tab and continue your session on your mobile device.",
         "errorMessage": "An error occurred and you could not be verified. Please contact support."
     },
