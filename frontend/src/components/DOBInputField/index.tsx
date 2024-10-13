@@ -21,7 +21,7 @@ const DOBInputField = (props: DOBInputFieldProps) => {
         <LocalizationProvider dateAdapter={AdapterMoment}>
             <DatePicker
                 label={props.label}
-                inputFormat="MM/DD/YYYY"
+                inputFormat="M/D/YYYY"
                 value={props.dob}
                 onChange={props.onDOBChanged}
                 disabled={props.disabled}
