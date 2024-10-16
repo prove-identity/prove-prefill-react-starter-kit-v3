@@ -8,7 +8,7 @@
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.4",
     "@mui/x-date-pickers": "^5.0.15",
-    "@prove-identity/prove-auth": "^2.4.5",
+    "@prove-identity/prove-auth": "^2.7.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
