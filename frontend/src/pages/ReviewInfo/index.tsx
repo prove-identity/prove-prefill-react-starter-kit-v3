@@ -22,14 +22,20 @@ const validateSchema = yup.object().shape({
     extendedAddress: yup.string(),
     city: yup.string().required('City is required'),
     region: yup.string().required('Region is required'),
-    postalCode: yup.string().matches(/^\d{5}$/, 'Must be exactly 5 digits').required('Postal Code is required'),
+    postalCode: yup.string()
+        .matches(/^\d{5}(-\d{4})?$/, 'Must be a valid 5-digit or ZIP+4 postal code')
+        .required('Postal Code is required'),
     firstName: yup.string().required('First name is required'),
     lastName: yup.string().required('Last name is required'),
     dob: yup.string().nullable(),
-    last4SSN: yup.string().matches(/^\d{4}$/, 'Must be exactly 4 digits').required('Last 4 SSN is required').max(4, 'Must be exactly 4 digits')
+    ssn: yup.string()
+        .matches(/^\d{9}$/, 'Must be exactly 9 digits')
+        .required('SSN is required')
+        .max(9, 'Must be exactly 9 digits')
 });
 
 export type ReviewInfoFormData = yup.InferType<typeof validateSchema>;
+
 
 const ReviewInfo: React.FC = () => {
     const { t } = useTranslation();
@@ -51,7 +57,7 @@ const ReviewInfo: React.FC = () => {
             firstName: "",
             lastName: "",
             dob: "",
-            last4SSN: "",
+            ssn: "",
         }
     });
 
@@ -93,7 +99,7 @@ const ReviewInfo: React.FC = () => {
                     setValue('firstName', firstName);
                     setValue('lastName', lastName);
                     if (dob) setValue('dob', moment(dob).format("MM/DD/YYYY"));
-                    setValue('last4SSN', ssn);
+                    setValue('ssn', ssn);
 
                     if (addresses && addresses.length > 0) {
                         const addressData = addresses[0];
@@ -131,7 +137,7 @@ const ReviewInfo: React.FC = () => {
                     dob: moment(data.dob).format("YYYY-MM-DD"),
                     firstName: data.firstName,
                     lastName: data.lastName,
-                    last4SSN: data.last4SSN,
+                    ssn: data.ssn,
                     addresses: [{
                         city: data.city,
                         address: data.address,
@@ -208,7 +214,7 @@ const ReviewInfo: React.FC = () => {
                                 <Controller
                                     control={control}
                                     name="dob"
-                                    render={({ field: { ref: fieldRef, value, onChange, ...fieldProps }, fieldState: { error = undefined } }) => (
+                                    render={({ field: { ref: fieldRef, value, onChange }, fieldState: { error = undefined } }) => (
                                         <DOBInputField
                                             label={t('dataCollection.dob.label')}
                                             fontSize="large"
@@ -224,15 +230,10 @@ const ReviewInfo: React.FC = () => {
                             <Grid item xs={12} sx={{ pt: 1, mt: 1 }}>
                                 <FormTextInput
                                     control={control}
-                                    name="last4SSN"
+                                    name="ssn"
                                     type="numeric"
                                     label={t('dataCollection.ssn.label')}
-                                    maxLength={4}
-                                    startAdornment={
-                                        <InputAdornment position="start" sx={{ fontWeight: 'bold', fontSize: '1.4rem' }}>
-                                            ***  **
-                                        </InputAdornment>
-                                    }
+                                    maxLength={9}
                                 />
                             </Grid>
                             <Grid item xs={12} sx={{ pt: '0px !important' }}>

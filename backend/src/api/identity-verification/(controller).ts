@@ -33,11 +33,10 @@ export const v3StartRequest = [
   asyncMiddleware(async (req: Request, res: Response, _next: NextFunction, _err: any): Promise<Response<proveInterfaces.V3StartResponse, Record<string, any>>> => {
     try {
       const { phoneNumber, last4SSN, flowType, finalTargetUrl } = req.body;
-
       const sdk = proveBackendSdk.getInstance();
       const { v3StartResponse } = await sdk.v3.v3StartRequest({
         phoneNumber,
-        ssn: last4SSN,
+        ssn: (last4SSN as string).trimEnd(),
         flowType,
         finalTargetUrl: finalTargetUrl || 'http://127.0.0.1:3000/sms-result',
       } as proveInterfaces.V3StartRequest);
