@@ -18,9 +18,9 @@ export default class ProveClientSdk {
         authFinishStep: proveAuth.AuthFinishStepFn,
     ): proveAuth.Authenticator {
         const authenticator = new proveAuth.AuthenticatorBuilder()
-            .withRole(proveAuth.DeviceRole.Primary)
-            .withOtpFallback(otpStartStep, otpFinishStep)
             .withAuthFinishStep(authFinishStep)
+            .withMobileAuthImplementation(proveAuth.MobileAuthImplementation.Fetch)
+            .withOtpFallback(otpStartStep, otpFinishStep)
             .build();
 
         return authenticator;

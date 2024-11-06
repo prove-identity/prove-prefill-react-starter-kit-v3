@@ -77,8 +77,6 @@ const SMSWaitingPage: React.FC = () => {
         execute: (phoneNumberNeeded: boolean, phoneValidationError?: proveAuth.PhoneValidationError
         ): Promise<PhoneNumberInput | null> => {
             return new Promise((resolve, reject) => {
-                console.log('phoneNumberNeeded: ', phoneNumberNeeded);
-                console.log('phoneValidationError: ', phoneValidationError);
                 if (phoneNumberNeeded) {
                     if (phoneValidationError) {
                         // Handle validation error if needed
