@@ -1,0 +1,76 @@
+{
+    "global": {
+        "genericError": "Nos encontramos con un error. Por favor, actualiza y vuelve a intentarlo.",
+        "identityError": "Ocurrió un error durante el proceso de verificación. Por favor, inténtalo de nuevo."
+    },
+    "authAgreement": {
+        "termsAndConditions1": "Al hacer clic en 'Continuar', aceptas nuestros ",
+        "termsAndConditions2": "Términos y Condiciones."
+    },
+    "challengePage": {
+        "title": "Comencemos encontrando tu información",
+        "subTitle": "Podemos completar previamente parte de esta solicitud con tu nombre, dirección e información de contacto."
+    },
+    "otpEntry": {
+        "title": "Te enviamos un código de verificación de 6 dígitos por mensaje de texto a tu número de teléfono. Por favor, introdúcelo a continuación:",
+        "sendingOtp": "Enviando OTP...",
+        "failureSendingOtp": "¡No se pudo enviar el OTP!",
+        "continueButton": "Verificar Código"
+    },
+    "continueAuth": {
+        "successMessage": "Tu identidad ha sido verificada. Por favor, regresa a la aplicación para completar este proceso.",
+        "errorMessage": "Ocurrió un error y no pudimos verificar tu identidad. Por favor, contacta al soporte."
+    },
+    "smsWaiting": {
+        "title": "Verifica tu móvil",
+        "subTitle": "Por favor, haz clic en el enlace que acabamos de enviar al teléfono que termina en ",
+        "didNotRecieve": "¿No recibiste el enlace?",
+        "returnToChallenge": "Reenviar el Enlace"
+    },
+    "reviewInfo": {
+        "title": "Tu Información",
+        "subTitle": "Todos los campos son obligatorios a menos que se indique lo contrario",
+        "continueButton": "Confirmar"
+    },
+    "dataCollection": {
+        "ssn": {
+            "label": "Número de Seguro Social",
+            "errorText": "Ingresa los últimos 4 dígitos de tu número de seguro social",
+            "moreInfo": "Al proporcionar los últimos 4 dígitos de tu SSN, intentaremos encontrar tu información para agilizar tu solicitud.",
+            "disclaimer": "Esto es requerido por las regulaciones financieras"
+        },
+        "phone": {
+            "label": "Número de Teléfono"
+        },
+        "firstName": {
+            "label": "Nombre",
+            "errorText": "Ingresa tu nombre legal"
+        },
+        "lastName": {
+            "label": "Apellido",
+            "errorText": "Ingresa tu apellido legal"
+        },
+        "dob": {
+            "label": "Fecha de Nacimiento"
+        },
+        "address": {
+            "label": "Dirección",
+            "errorText": "Ingresa tu dirección completa"
+        },
+        "extendedAddress": {
+            "label": "Dirección Extendida",
+            "errorText": "Ingresa tu ciudad"
+        },
+        "city": {
+            "label": "Ciudad"
+        },
+        "region": {
+            "label": "Estado",
+            "errorText": "Ingresa tu estado"
+        },
+        "postalCode": {
+            "label": "Código Postal",
+            "errorText": "Ingresa tu código postal"
+        }
+    }
+}

@@ -1,0 +1,79 @@
+@font-face {
+  font-family: 'Gellix';
+  font-weight: 500;
+  src: url("/fonts/Gellix-Regular.woff2") format('woff2');
+}
+
+@font-face {
+  font-family: 'Gellix';
+  font-weight: 600;
+  src: url("/fonts/Gellix-Medium.woff2") format('woff2');
+}
+
+@font-face {
+  font-family: 'Gellix';
+  font-weight: 900;
+  src: url("/fonts/Gellix-Bold.woff2") format('woff2');
+}
+
+@font-face {
+  font-family: 'Gellix';
+  font-weight: 700;
+  src: url("/fonts/Gellix-SemiBold.woff2") format('woff2');
+}
+
+html {
+  font-size: 62.5%;
+  font-family: Gellix, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 17px;
+  background-color: 'white' !important;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+#animationWrapper {
+  width: 100%;
+  height: calc(100% - 80px);
+}
+
+.fadeIn {
+    animation: 0.3s fadeIn forwards;
+}
+
+.fadeInSlow {
+  animation: 1s fadeIn forwards;
+}
+
+.fadeOut {
+    animation: 0.05s fadeOut forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}

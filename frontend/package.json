@@ -1,0 +1,79 @@
+{
+  "name": "verify-with-prove",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.11.0",
+    "@mui/material": "^5.11.4",
+    "@mui/x-date-pickers": "^5.0.15",
+    "@prove-identity/prove-auth": "^2.7.1",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.7.7",
+    "crypto-browserify": "^3.12.0",
+    "i18next": "^23.7.18",
+    "i18next-http-backend": "^2.4.2",
+    "moment": "^2.29.4",
+    "mui-tel-input": "^3.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.51.5",
+    "react-i18next": "^14.0.1",
+    "react-router-dom": "^6.6.2",
+    "serve-handler": "^6.1.5",
+    "uuid": "^9.0.1",
+    "web-vitals": "^2.1.4",
+    "yup": "^1.4.0"
+  },
+  "scripts": {
+    "dev": "vite --mode development",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "serve": "npm run preview"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@hookform/resolvers": "^3.6.0",
+    "@types/jest": "^27.5.2",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@types/uuid": "^9.0.7",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
+    "@typescript-eslint/parser": "^6.18.1",
+    "@vitejs/plugin-basic-ssl": "^1.1.0",
+    "@vitejs/plugin-react-swc": "^3.7.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^3.2.1",
+    "prop-types": "^15.8.1",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.12",
+    "vite-plugin-env-compatible": "^2.0.1",
+    "vite-tsconfig-paths": "^4.3.2",
+    "vitest": "^1.6.0"
+  }
+}

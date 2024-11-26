@@ -1,0 +1,50 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rimraf build",
+    "minify": "terser -c -m -o ./build/app.min.js -- ./build/app.js && rimraf ./build/app.js",
+    "build": "npm run clean && webpack --mode=production && npm run minify",
+    "serve": "node -r tsconfig-paths/register build/app.min.js",
+    "dev": "ts-node-dev --respawn --transpile-only -r tsconfig-paths/register ./src/index.ts",
+    "docker": "node --trace-warnings ./build/app.min.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prove-identity/prove-api": "^0.7.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.19.2",
+    "express-validator": "^7.1.0",
+    "helmet": "^7.1.0",
+    "http-status-codes": "^2.3.0",
+    "minimist": "^1.2.8",
+    "reflect-metadata": "^0.1.13"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.6",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/minimist": "^1.2.5",
+    "@types/node": "^20.10.3",
+    "chai": "^4.3.10",
+    "copy-webpack-plugin": "^11.0.0",
+    "mocha": "^10.2.0",
+    "prettier": "^3.1.1",
+    "terser-webpack-plugin": "^5.3.10",
+    "ts-loader": "^9.5.1",
+    "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.2.0",
+    "tsconfig-paths-webpack-plugin": "^4.1.0",
+    "typescript": "^5.4.5",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-node-externals": "^3.0.0"
+  }
+}
