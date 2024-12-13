@@ -30,7 +30,8 @@
     "reviewInfo": {
         "title": "Tu Información",
         "subTitle": "Todos los campos son obligatorios a menos que se indique lo contrario",
-        "continueButton": "Confirmar"
+        "continueButton": "Confirmar",
+        "editInformation": "Editar Información"
     },
     "dataCollection": {
         "ssn": {

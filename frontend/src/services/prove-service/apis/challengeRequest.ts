@@ -69,7 +69,7 @@ const MOCK_RESPONSE_DATA: ChallengeRequestResponse = {
             "email@example.com"
         ],
         dob: "2024-05-02",
-        ssn: "8370"
+        ssn: "565228370"
     },
     success: true
 };

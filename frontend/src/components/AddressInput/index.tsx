@@ -5,6 +5,7 @@ import FormTextInput from '../FormTextInput';
 import { Controller, Control } from 'react-hook-form';
 
 export interface AddressInputProps {
+    disabled: boolean;
     control: Control<any>;
     onRegionChanged: (e: any) => void;
 }
@@ -20,6 +21,7 @@ const AddressInput = (props: AddressInputProps) => {
                     name="address"
                     label={t('dataCollection.address.label')}
                     type="text"
+                    disabled={props.disabled}
                 />
             </Grid>
             <Grid item xs={12}>
@@ -28,6 +30,7 @@ const AddressInput = (props: AddressInputProps) => {
                     name="extendedAddress"
                     label={t('dataCollection.extendedAddress.label')}
                     type="text"
+                    disabled={props.disabled}
                 />
             </Grid>
             <Grid item xs={12}>
@@ -36,6 +39,7 @@ const AddressInput = (props: AddressInputProps) => {
                     name="city"
                     label={t('dataCollection.city.label')}
                     type="text"
+                    disabled={props.disabled}
                 />
             </Grid>
             <Grid display={'flex'} gap={2} xs={12} item>
@@ -49,6 +53,7 @@ const AddressInput = (props: AddressInputProps) => {
                             value={value}
                             fullWidth
                             variant="outlined"
+                            disabled={props.disabled}
                             InputProps={{
                                 sx: {
                                     borderRadius: '12px',
@@ -86,6 +91,7 @@ const AddressInput = (props: AddressInputProps) => {
                     label={t('dataCollection.postalCode.label')}
                     type="text"
                     maxLength={5}
+                    disabled={props.disabled}
                 />
             </Grid>
         </Grid>
