@@ -2,11 +2,12 @@
 import { useEffect, useState } from 'react';
 import moment, { Moment } from "moment";
 import { useNavigate } from 'react-router-dom';
-import { Box, CircularProgress, Container, Grid, InputAdornment, Stack, Typography } from '@mui/material';
+import { Box, CircularProgress, Container, Grid, InputAdornment, Stack, Typography, Checkbox, FormControlLabel } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Controller, useForm, } from 'react-hook-form';
+import { useTheme } from '@mui/material/styles';
 // module import 
 import ProveButton from '../../components/ProveButton';
 import AddressInput from '../../components/AddressInput';
@@ -41,9 +42,11 @@ const ReviewInfo: React.FC = () => {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const { setNextStep, getNextEndpoint, correlationId } = useAuth();
+    const theme = useTheme();
 
     const [loading, setLoading] = useState<boolean>(false);
     const [manualEntry, setManualEntry] = useState<boolean>(false);
+    const [isEditable, setIsEditable] = useState<boolean>(false);
 
     const { control, handleSubmit, setValue, formState: { isValid, isSubmitting, isLoading, }, trigger } = useForm({
         mode: 'onChange',
@@ -70,11 +73,12 @@ const ReviewInfo: React.FC = () => {
 
         try {
             const nextEndpoint = getNextEndpoint();
-
             if (nextEndpoint === ApiEndpoints.V3_CHALLENGE) {
                 await handleV3ChallengeRequest();
+                setIsEditable(false);
             } else if (nextEndpoint === ApiEndpoints.V3_COMPLETE) {
                 setManualEntry(true);
+                setIsEditable(true);
             }
         } catch (error) {
             console.error('Error during verification:', error);
@@ -185,62 +189,95 @@ const ReviewInfo: React.FC = () => {
                             {t('reviewInfo.subTitle')}
                         </Typography>
                     </Box>
-
-                    <Stack gap={1} mb={1} className="fadeIn">
-                        <Grid container spacing={2}>
-                            <Grid item xs={6} sx={{ pt: 1 }}>
-                                <FormTextInput
-                                    control={control}
-                                    name="firstName"
-                                    label={t('dataCollection.firstName.label')}
-                                    type="text"
-                                />
+                    <Box
+                        sx={{
+                            backgroundColor: isEditable
+                                ? 'transparent'
+                                : theme.palette.mode === 'light'
+                                    ? theme.palette.grey[100]
+                                    : theme.palette.grey[800],
+                            padding: 2,
+                            borderRadius: 1,
+                        }}
+                    >
+                        <Stack gap={1} mb={1} className="fadeIn">
+                            <Grid container spacing={2}>
+                                <Grid item xs={6} sx={{ pt: 1 }}>
+                                    <FormTextInput
+                                        control={control}
+                                        name="firstName"
+                                        label={t('dataCollection.firstName.label')}
+                                        type="text"
+                                        disabled={!isEditable}
+                                    />
+                                </Grid>
+                                <Grid item xs={6} sx={{ pt: 1 }}>
+                                    <FormTextInput
+                                        control={control}
+                                        name="lastName"
+                                        label={t('dataCollection.lastName.label')}
+                                        type="text"
+                                        disabled={!isEditable}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sx={{ pt: 1 }}>
+                                    <AddressInput
+                                        control={control}
+                                        onRegionChanged={(e: any) => setValue('region', e.target.value)}
+                                        disabled={!isEditable}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sx={{ pt: 1 }}>
+                                    <Controller
+                                        control={control}
+                                        name="dob"
+                                        render={({ field: { ref: fieldRef, value, onChange }, fieldState: { error = undefined } }) => (
+                                            <DOBInputField
+                                                label={t('dataCollection.dob.label')}
+                                                fontSize="large"
+                                                dob={value as Moment | null}
+                                                dobError={!!error}
+                                                errorText={error?.message}
+                                                disabled={!isEditable}
+                                                showErrorText
+                                                onDOBChanged={(newDOB: Moment | null) => onChange(newDOB)}
+                                            />
+                                        )}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sx={{ pt: 1, mt: 1 }}>
+                                    <FormTextInput
+                                        control={control}
+                                        name="ssn"
+                                        type="numeric"
+                                        label={t('dataCollection.ssn.label')}
+                                        maxLength={9}
+                                        disabled={!isEditable}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sx={{ pt: '0px !important' }}>
+                                    <Typography variant="caption" color={'gray'}>{t('dataCollection.ssn.disclaimer')}</Typography>
+                                </Grid>
                             </Grid>
-                            <Grid item xs={6} sx={{ pt: 1 }}>
-                                <FormTextInput
-                                    control={control}
-                                    name="lastName"
-                                    label={t('dataCollection.lastName.label')}
-                                    type="text"
-                                />
-                            </Grid>
-                            <Grid item xs={12} sx={{ pt: 1 }}>
-                                <AddressInput
-                                    control={control}
-                                    onRegionChanged={(e: any) => setValue('region', e.target.value)}
-                                />
-                            </Grid>
-                            <Grid item xs={12} sx={{ pt: 1 }}>
-                                <Controller
-                                    control={control}
-                                    name="dob"
-                                    render={({ field: { ref: fieldRef, value, onChange }, fieldState: { error = undefined } }) => (
-                                        <DOBInputField
-                                            label={t('dataCollection.dob.label')}
-                                            fontSize="large"
-                                            dob={value as Moment | null}
-                                            dobError={!!error}
-                                            errorText={error?.message}
-                                            showErrorText
-                                            onDOBChanged={(newDOB: Moment | null) => onChange(newDOB)}
-                                        />
-                                    )}
-                                />
-                            </Grid>
-                            <Grid item xs={12} sx={{ pt: 1, mt: 1 }}>
-                                <FormTextInput
-                                    control={control}
-                                    name="ssn"
-                                    type="numeric"
-                                    label={t('dataCollection.ssn.label')}
-                                    maxLength={9}
-                                />
-                            </Grid>
-                            <Grid item xs={12} sx={{ pt: '0px !important' }}>
-                                <Typography variant="caption" color={'gray'}>{t('dataCollection.ssn.disclaimer')}</Typography>
-                            </Grid>
-                        </Grid>
-                    </Stack>
+                        </Stack>
+                        {!manualEntry && (
+                            <Box mt={2}>
+                                <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        checked={isEditable}
+                                        onChange={() => setIsEditable(!isEditable)}
+                                    />
+                                }
+                                label={
+                                    <Typography variant="body1" component="span">
+                                        {t('reviewInfo.editInformation')}
+                                    </Typography>
+                                }
+                            />
+                            </Box>
+                        )}
+                    </Box>
                     <Box display="flex" gap={1} mt={2.5} mb={2} className="fadeIn">
                         <ProveButton
                             onClick={handleSubmit(completeIdentityVerify)}

@@ -1,7 +1,7 @@
 import { TextField } from '@mui/material';
 import { Controller } from 'react-hook-form';
 
-const FormTextInput = ({ control, name, type, placeholder, label, startAdornment, maxLength }: any) => {
+const FormTextInput = ({ control, name, type, placeholder, label, startAdornment, maxLength, disabled = false }: any) => {
     return (
         <Controller
             name={name}
@@ -15,6 +15,7 @@ const FormTextInput = ({ control, name, type, placeholder, label, startAdornment
                     error={!!error}
                     label={label}
                     variant="outlined"
+                    disabled={disabled}
                     inputProps={{
                         inputMode: type || 'text',
                         placeholder: placeholder,

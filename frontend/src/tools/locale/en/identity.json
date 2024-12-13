@@ -32,7 +32,8 @@
     "reviewInfo": {
         "title": "Your Information",
         "subTitle": "All fields are required unless stated otherwise",
-        "continueButton": "Confirm"
+        "continueButton": "Confirm",
+        "editInformation": "Edit Information"
     },
     "dataCollection": {
         "ssn": {
