@@ -81,10 +81,11 @@ const ChallengePage: React.FC = () => {
         <Container
             className="fadeIn"
             sx={{
+                pb: 2, 
+                height: '100%', 
                 display: 'flex',
                 flexDirection: 'column',
-                gap: 2,
-                height: `calc(100% - ${NAV_HEIGHT})`
+                overflow: 'hidden'
             }}>
             {isLoading ? (
                 <Box sx={{ background: "transparent", zIndex: 2147483648 }}>
@@ -157,11 +158,12 @@ const ChallengePage: React.FC = () => {
                     </Grid>
                 </Stack>
             )}
-            <Stack
+            <Box
                 width="100%"
                 justifyContent="flex-end"
                 gap={1}
                 pb={2}
+                sx={{ flexShrink: 0 }}
             >
                 <Grid container spacing={1}>
                     <Grid item xs={12} mb={1}>
@@ -178,7 +180,7 @@ const ChallengePage: React.FC = () => {
                         </ProveButton>
                     </Grid>
                 </Grid>
-            </Stack>
+            </Box>
         </Container>
     );
 };

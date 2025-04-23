@@ -174,111 +174,128 @@ const ReviewInfo: React.FC = () => {
     };
 
     return (
-        <Container sx={{ pb: 2, height: '100%', overflowX: 'hidden', overflowY: 'hidden' }}>
+        <Container sx={{ 
+            pb: 2, 
+            height: '100%', 
+            display: 'flex',
+            flexDirection: 'column',
+            overflow: 'hidden'
+        }}>
             {loading || isLoading ? (
                 <Box display="flex" alignItems="center" justifyContent="center" pt={4}>
                     <CircularProgress />
                 </Box>
             ) : (
-                <Box width="100%">
-                    <Box width="100%" mb={3}>
-                        <Typography textAlign="left" component="h1" variant="h4" fontWeight="bold">
-                            {t('reviewInfo.title')}
-                        </Typography>
-                        <Typography textAlign="left" component="h2" variant="h6" fontWeight="bold" pb={1} mb={2}>
-                            {t('reviewInfo.subTitle')}
-                        </Typography>
+                <Box sx={{ 
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: '100%',
+                    overflow: 'hidden'
+                }}>
+                    <Box sx={{ 
+                        overflowY: 'auto',
+                        flex: 1,
+                        pr: 1 
+                    }}>
+                        <Box width="100%" mb={3}>
+                            <Typography textAlign="left" component="h1" variant="h4" fontWeight="bold">
+                                {t('reviewInfo.title')}
+                            </Typography>
+                            <Typography textAlign="left" component="h2" variant="h6" fontWeight="bold" pb={1} mb={2}>
+                                {t('reviewInfo.subTitle')}
+                            </Typography>
+                        </Box>
+                        <Box
+                            sx={{
+                                backgroundColor: isEditable
+                                    ? 'transparent'
+                                    : theme.palette.mode === 'light'
+                                        ? theme.palette.grey[100]
+                                        : theme.palette.grey[800],
+                                padding: 2,
+                                borderRadius: 1,
+                            }}
+                        >
+                            <Stack gap={1} mb={1} className="fadeIn">
+                                <Grid container spacing={2}>
+                                    <Grid item xs={6} sx={{ pt: 1 }}>
+                                        <FormTextInput
+                                            control={control}
+                                            name="firstName"
+                                            label={t('dataCollection.firstName.label')}
+                                            type="text"
+                                            disabled={!isEditable}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={6} sx={{ pt: 1 }}>
+                                        <FormTextInput
+                                            control={control}
+                                            name="lastName"
+                                            label={t('dataCollection.lastName.label')}
+                                            type="text"
+                                            disabled={!isEditable}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12} sx={{ pt: 1 }}>
+                                        <AddressInput
+                                            control={control}
+                                            onRegionChanged={(e: any) => setValue('region', e.target.value)}
+                                            disabled={!isEditable}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12} sx={{ pt: 1 }}>
+                                        <Controller
+                                            control={control}
+                                            name="dob"
+                                            render={({ field: { ref: fieldRef, value, onChange }, fieldState: { error = undefined } }) => (
+                                                <DOBInputField
+                                                    label={t('dataCollection.dob.label')}
+                                                    fontSize="large"
+                                                    dob={value as Moment | null}
+                                                    dobError={!!error}
+                                                    errorText={error?.message}
+                                                    disabled={!isEditable}
+                                                    showErrorText
+                                                    onDOBChanged={(newDOB: Moment | null) => onChange(newDOB)}
+                                                />
+                                            )}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12} sx={{ pt: 1, mt: 1 }}>
+                                        <FormTextInput
+                                            control={control}
+                                            name="ssn"
+                                            type="numeric"
+                                            label={t('dataCollection.ssn.label')}
+                                            maxLength={9}
+                                            disabled={!isEditable}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12} sx={{ pt: '0px !important' }}>
+                                        <Typography variant="caption" color={'gray'}>{t('dataCollection.ssn.disclaimer')}</Typography>
+                                    </Grid>
+                                </Grid>
+                            </Stack>
+                            {!manualEntry && (
+                                <Box mt={2}>
+                                    <FormControlLabel
+                                    control={
+                                        <Checkbox
+                                            checked={isEditable}
+                                            onChange={() => setIsEditable(!isEditable)}
+                                        />
+                                    }
+                                    label={
+                                        <Typography variant="body1" component="span">
+                                            {t('reviewInfo.editInformation')}
+                                        </Typography>
+                                    }
+                                />
+                                </Box>
+                            )}
+                        </Box>
                     </Box>
-                    <Box
-                        sx={{
-                            backgroundColor: isEditable
-                                ? 'transparent'
-                                : theme.palette.mode === 'light'
-                                    ? theme.palette.grey[100]
-                                    : theme.palette.grey[800],
-                            padding: 2,
-                            borderRadius: 1,
-                        }}
-                    >
-                        <Stack gap={1} mb={1} className="fadeIn">
-                            <Grid container spacing={2}>
-                                <Grid item xs={6} sx={{ pt: 1 }}>
-                                    <FormTextInput
-                                        control={control}
-                                        name="firstName"
-                                        label={t('dataCollection.firstName.label')}
-                                        type="text"
-                                        disabled={!isEditable}
-                                    />
-                                </Grid>
-                                <Grid item xs={6} sx={{ pt: 1 }}>
-                                    <FormTextInput
-                                        control={control}
-                                        name="lastName"
-                                        label={t('dataCollection.lastName.label')}
-                                        type="text"
-                                        disabled={!isEditable}
-                                    />
-                                </Grid>
-                                <Grid item xs={12} sx={{ pt: 1 }}>
-                                    <AddressInput
-                                        control={control}
-                                        onRegionChanged={(e: any) => setValue('region', e.target.value)}
-                                        disabled={!isEditable}
-                                    />
-                                </Grid>
-                                <Grid item xs={12} sx={{ pt: 1 }}>
-                                    <Controller
-                                        control={control}
-                                        name="dob"
-                                        render={({ field: { ref: fieldRef, value, onChange }, fieldState: { error = undefined } }) => (
-                                            <DOBInputField
-                                                label={t('dataCollection.dob.label')}
-                                                fontSize="large"
-                                                dob={value as Moment | null}
-                                                dobError={!!error}
-                                                errorText={error?.message}
-                                                disabled={!isEditable}
-                                                showErrorText
-                                                onDOBChanged={(newDOB: Moment | null) => onChange(newDOB)}
-                                            />
-                                        )}
-                                    />
-                                </Grid>
-                                <Grid item xs={12} sx={{ pt: 1, mt: 1 }}>
-                                    <FormTextInput
-                                        control={control}
-                                        name="ssn"
-                                        type="numeric"
-                                        label={t('dataCollection.ssn.label')}
-                                        maxLength={9}
-                                        disabled={!isEditable}
-                                    />
-                                </Grid>
-                                <Grid item xs={12} sx={{ pt: '0px !important' }}>
-                                    <Typography variant="caption" color={'gray'}>{t('dataCollection.ssn.disclaimer')}</Typography>
-                                </Grid>
-                            </Grid>
-                        </Stack>
-                        {!manualEntry && (
-                            <Box mt={2}>
-                                <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        checked={isEditable}
-                                        onChange={() => setIsEditable(!isEditable)}
-                                    />
-                                }
-                                label={
-                                    <Typography variant="body1" component="span">
-                                        {t('reviewInfo.editInformation')}
-                                    </Typography>
-                                }
-                            />
-                            </Box>
-                        )}
-                    </Box>
-                    <Box display="flex" gap={1} mt={2.5} mb={2} className="fadeIn">
+                    <Box display="flex" gap={1} mt={2.5} mb={2} className="fadeIn" sx={{ flexShrink: 0 }}>
                         <ProveButton
                             onClick={handleSubmit(completeIdentityVerify)}
                             disabled={!isValid || isSubmitting}
