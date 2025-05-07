@@ -11,11 +11,10 @@ import {
 
 const router = Router({ mergeParams: true });
 
-router.post('/token');
 router.get('/echo', getEchoEndpoint);
-router.post('/start', v3StartRequest);
-router.post('/validate', v3ValidateRequest);
-router.post('/challenge', v3ChallengeRequest);
-router.post('/complete', v3CompleteRequest);
+router.use('/start', v3StartRequest);
+router.use('/validate', v3ValidateRequest);
+router.use('/challenge', v3ChallengeRequest);
+router.use('/complete', v3CompleteRequest);
 
 export default router; 

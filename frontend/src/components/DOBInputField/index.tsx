@@ -1,12 +1,11 @@
-import { Moment } from 'moment';
+import dayjs, { Dayjs } from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
-import { DatePicker } from '@mui/x-date-pickers';
-import { TextField, TextFieldProps } from '@mui/material';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 interface DOBInputFieldProps {
-    dob: Moment | null;
-    onDOBChanged: (newDOB: Moment | null) => void;
+    dob: Dayjs | null;
+    onDOBChanged: (newDOB: Dayjs | null) => void;
     dobError: boolean;
     errorText?: string;
     showErrorText?: boolean;
@@ -17,37 +16,32 @@ interface DOBInputFieldProps {
 }
 
 const DOBInputField = (props: DOBInputFieldProps) => {
+    const dob = props.dob ? dayjs(props.dob) : null;
     return (
-        <LocalizationProvider dateAdapter={AdapterMoment}>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
                 label={props.label}
-                inputFormat="M/D/YYYY"
-                value={props.dob}
+                format="MM/DD/YYYY"
+                value={dob}
                 onChange={props.onDOBChanged}
                 disabled={props.disabled}
-                renderInput={(params: TextFieldProps) => (
-                    <TextField
-                        {...params}
-                        error={props.dobError}
-                        helperText={
-                            props.showErrorText && props.errorText
-                                ? props.errorText
-                                : null
-                        }
-                        fullWidth
-                        placeholder="MM/DD/YYYY"
-                        sx={{
+                slotProps={{
+                    textField: {
+                        error: props.dobError,
+                        helperText: props.showErrorText && props.errorText ? props.errorText : null,
+                        fullWidth: true,
+                        variant: "outlined",
+                        sx: {
                             '.MuiPickersToolbar-root': {
                                 borderRadius: '12px',
                             },
                             '& .MuiOutlinedInput-input': {
                                 fontWeight: 'bold',
                                 fontSize: '1.5rem',
+                            }
                         }
-                    }}
-                        variant="outlined"
-                    />
-                )}
+                    }
+                }}
             />
         </LocalizationProvider>
     );

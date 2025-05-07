@@ -11,16 +11,16 @@ ifneq (,$(wildcard frontend/.env))
 endif
 
 # Ensure the variables are set
-REACT_APP_BASE_API_URL := $(REACT_APP_BASE_API_URL)
-REACT_APP_ENV := $(REACT_APP_ENV)
+VITE_APP_BASE_API_URL := $(VITE_APP_BASE_API_URL)
+VITE_APP_ENV := $(VITE_APP_ENV)
 
 # Build the frontend Docker image
 .PHONY: build-frontend
 build-frontend: 
 	cd frontend && docker build \
 	    --no-cache \
-		--build-arg REACT_APP_BASE_API_URL=$(REACT_APP_BASE_API_URL) \
-		--build-arg REACT_APP_ENV=$(REACT_APP_ENV) \
+		--build-arg VITE_APP_BASE_API_URL=$(VITE_APP_BASE_API_URL) \
+		--build-arg VITE_APP_ENV=$(VITE_APP_ENV) \
 		-t $(FRONTEND_IMAGE) -f Dockerfile.frontend .
 
 # Build the backend Docker image

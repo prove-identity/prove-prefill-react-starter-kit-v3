@@ -72,8 +72,8 @@ open -e .env
 6. Paste this into the .env file and then save the file:
 ```bash
 NODE_ENV=sandbox
-REACT_APP_ENV=sandbox
-REACT_APP_BASE_API_URL=http://localhost:8080/api
+VITE_APP_ENV=sandbox
+VITE_APP_BASE_API_URL=http://localhost:8080/api
 ```
 7.  Start the front-end service with this command:
 ```bash

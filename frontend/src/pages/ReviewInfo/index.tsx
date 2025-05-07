@@ -1,13 +1,13 @@
 // package import 
 import { useEffect, useState } from 'react';
-import moment, { Moment } from "moment";
 import { useNavigate } from 'react-router-dom';
-import { Box, CircularProgress, Container, Grid, InputAdornment, Stack, Typography, Checkbox, FormControlLabel } from '@mui/material';
+import { Box, CircularProgress, Container, Grid, Stack, Typography, Checkbox, FormControlLabel } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Controller, useForm, } from 'react-hook-form';
 import { useTheme } from '@mui/material/styles';
+import dayjs, { Dayjs } from 'dayjs';
 // module import 
 import ProveButton from '../../components/ProveButton';
 import AddressInput from '../../components/AddressInput';
@@ -98,11 +98,11 @@ const ReviewInfo: React.FC = () => {
                 setNextStep(next);
 
                 if (success && individual) {
-                    const { firstName = '', lastName = '', addresses = [], dob = '', ssn = '' } = individual;
+                    const { firstName = '', lastName = '', addresses = [], dob = null, ssn = '' } = individual;
 
                     setValue('firstName', firstName);
                     setValue('lastName', lastName);
-                    if (dob) setValue('dob', moment(dob).format("MM/DD/YYYY"));
+                    if (!!dob) setValue('dob', dayjs(dob).format("MM/DD/YYYY"));
                     setValue('ssn', ssn);
 
                     if (addresses && addresses.length > 0) {
@@ -138,7 +138,7 @@ const ReviewInfo: React.FC = () => {
             const response = await proveService.v3CompleteRequest({
                 correlationId: correlationId as string,
                 individual: {
-                    dob: moment(data.dob).format("YYYY-MM-DD"),
+                    dob: dayjs(data.dob).format("YYYY-MM-DD"),
                     firstName: data.firstName,
                     lastName: data.lastName,
                     ssn: data.ssn,
@@ -202,7 +202,7 @@ const ReviewInfo: React.FC = () => {
                     >
                         <Stack gap={1} mb={1} className="fadeIn">
                             <Grid container spacing={2}>
-                                <Grid item xs={6} sx={{ pt: 1 }}>
+                                <Grid size={{ xs: 6}} sx={{ pt: 1 }}>
                                     <FormTextInput
                                         control={control}
                                         name="firstName"
@@ -211,7 +211,7 @@ const ReviewInfo: React.FC = () => {
                                         disabled={!isEditable}
                                     />
                                 </Grid>
-                                <Grid item xs={6} sx={{ pt: 1 }}>
+                                <Grid size={{ xs: 6}} sx={{ pt: 1 }}>
                                     <FormTextInput
                                         control={control}
                                         name="lastName"
@@ -220,32 +220,32 @@ const ReviewInfo: React.FC = () => {
                                         disabled={!isEditable}
                                     />
                                 </Grid>
-                                <Grid item xs={12} sx={{ pt: 1 }}>
+                                <Grid size={{ xs: 12}} sx={{ pt: 1 }}>
                                     <AddressInput
                                         control={control}
                                         onRegionChanged={(e: any) => setValue('region', e.target.value)}
                                         disabled={!isEditable}
                                     />
                                 </Grid>
-                                <Grid item xs={12} sx={{ pt: 1 }}>
+                                <Grid size={{ xs: 12}} sx={{ pt: 1 }}>
                                     <Controller
                                         control={control}
                                         name="dob"
-                                        render={({ field: { ref: fieldRef, value, onChange }, fieldState: { error = undefined } }) => (
+                                        render={({ field: { ref: fieldRef, value = null, onChange }, fieldState: { error = undefined } }) => (
                                             <DOBInputField
                                                 label={t('dataCollection.dob.label')}
                                                 fontSize="large"
-                                                dob={value as Moment | null}
+                                                dob={value as Dayjs | null}
                                                 dobError={!!error}
                                                 errorText={error?.message}
                                                 disabled={!isEditable}
                                                 showErrorText
-                                                onDOBChanged={(newDOB: Moment | null) => onChange(newDOB)}
+                                                onDOBChanged={(newDOB: Dayjs | null) => onChange(newDOB)}
                                             />
                                         )}
                                     />
                                 </Grid>
-                                <Grid item xs={12} sx={{ pt: 1, mt: 1 }}>
+                                <Grid size={{ xs: 12}} sx={{ pt: 1, mt: 1 }}>
                                     <FormTextInput
                                         control={control}
                                         name="ssn"
@@ -255,7 +255,7 @@ const ReviewInfo: React.FC = () => {
                                         disabled={!isEditable}
                                     />
                                 </Grid>
-                                <Grid item xs={12} sx={{ pt: '0px !important' }}>
+                                <Grid size={{ xs: 12}} sx={{ pt: '0px !important' }}>
                                     <Typography variant="caption" color={'gray'}>{t('dataCollection.ssn.disclaimer')}</Typography>
                                 </Grid>
                             </Grid>

@@ -93,7 +93,7 @@ const ChallengePage: React.FC = () => {
             ) : (
                 <Stack mb={1} flexGrow={1} className="fadeInSlow">
                     <Grid container spacing={1}>
-                        <Grid item xs={12}>
+                        <Grid size={{ xs: 12}}>
                             <Typography
                                 textAlign="left"
                                 component="h1"
@@ -104,7 +104,7 @@ const ChallengePage: React.FC = () => {
                                 {t('challengePage.title')}
                             </Typography>
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid size={{ xs: 12}}>
                             <Typography
                                 textAlign="left"
                                 component="h2"
@@ -117,7 +117,7 @@ const ChallengePage: React.FC = () => {
                             </Typography>
                         </Grid>
                         {error && (
-                            <Grid item xs={12}>
+                            <Grid size={{ xs: 12}}>
                                 <Typography
                                     color="error"
                                     variant="body1"
@@ -126,7 +126,7 @@ const ChallengePage: React.FC = () => {
                                 </Typography>
                             </Grid>
                         )}
-                        <Grid item xs={12} mb={2}>
+                        <Grid size={{ xs: 12}}>
                             <FormTextInput
                                 control={control}
                                 name="last4SSN"
@@ -147,7 +147,7 @@ const ChallengePage: React.FC = () => {
                                 {t('dataCollection.ssn.moreInfo')}
                             </Typography>
                         </Grid>
-                        <Grid item xs={12} sx={{ pt: 1 }}>
+                        <Grid size={{ xs: 12}}>
                             <PhoneNumberInputField
                                 control={control}
                                 name="phoneNumber"
@@ -164,10 +164,10 @@ const ChallengePage: React.FC = () => {
                 pb={2}
             >
                 <Grid container spacing={1}>
-                    <Grid item xs={12} mb={1}>
+                    <Grid size={{ xs: 12}} mb={1}>
                         <AuthAgreement />
                     </Grid>
-                    <Grid item xs={12} mb={1}>
+                    <Grid size={{ xs: 12}} mb={1}>
                         <ProveButton
                             size="large"
                             type="submit"

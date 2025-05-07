@@ -27,7 +27,9 @@ export class Api {
   }
 
   private static errorHandling() {
-    this.app.use(handleErrors);
+    this.app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+      handleErrors(err, req, res, next);
+    });
   }
 
   private static listen() {

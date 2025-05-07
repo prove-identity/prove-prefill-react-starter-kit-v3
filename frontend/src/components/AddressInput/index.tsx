@@ -15,7 +15,7 @@ const AddressInput = (props: AddressInputProps) => {
 
     return (
         <Grid container gap={2}>
-            <Grid item xs={12}>
+            <Grid size={{ xs: 12}}>
                 <FormTextInput
                     control={props.control}
                     name="address"
@@ -24,7 +24,7 @@ const AddressInput = (props: AddressInputProps) => {
                     disabled={props.disabled}
                 />
             </Grid>
-            <Grid item xs={12}>
+            <Grid size={{ xs: 12}}>
                 <FormTextInput
                     control={props.control}
                     name="extendedAddress"
@@ -33,7 +33,7 @@ const AddressInput = (props: AddressInputProps) => {
                     disabled={props.disabled}
                 />
             </Grid>
-            <Grid item xs={12}>
+            <Grid size={{ xs: 12}}>
                 <FormTextInput
                     control={props.control}
                     name="city"
@@ -42,7 +42,7 @@ const AddressInput = (props: AddressInputProps) => {
                     disabled={props.disabled}
                 />
             </Grid>
-            <Grid display={'flex'} gap={2} xs={12} item>
+            <Grid display={'flex'} gap={2} size={{ xs: 12}}>
                 <Controller
                     name="region"
                     control={props.control}

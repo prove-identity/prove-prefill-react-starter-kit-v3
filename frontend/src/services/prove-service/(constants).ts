@@ -4,7 +4,7 @@ import axios, { AxiosResponse, } from "axios";
 import { sleep } from "../../util/helpers";
 import { Flowtype } from "./(definitions)";
 
-export const API_BASE_URL = import.meta.env.REACT_APP_BASE_API_URL;
+export const API_BASE_URL = import.meta.env.VITE_APP_BASE_API_URL;
 
 export const DEFAULT_REQUEST_HEADERS = {
     "Content-Type": "application/json",
