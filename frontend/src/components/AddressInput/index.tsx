@@ -54,20 +54,24 @@ const AddressInput = (props: AddressInputProps) => {
                             fullWidth
                             variant="outlined"
                             disabled={props.disabled}
-                            InputProps={{
-                                sx: {
-                                    borderRadius: '12px',
-                                    '.MuiInputBase-input': {
+                            slotProps={{
+                                inputLabel: {
+                                    shrink: true,
+                                    sx: {
+                                        fontSize: '1.2rem',
+                                    },
+                                },
+                                input: {
+                                    sx: {
+                                        borderRadius: '12px',
+                                        '.MuiInputBase-input': {
                                         fontSize: '1.5rem',
                                         fontWeight: 'bold',
                                         paddingLeft: '16px',
                                     },
-                                },
-                                disableUnderline: true,
-                            }}
-                            InputLabelProps={{
-                                shrink: true,
-                                style: { fontSize: '1.2rem' },
+                                    },
+                                    disableUnderline: true,
+                                }
                             }}
                             onChange={(e) => {
                                 onChange(e);
