@@ -21,7 +21,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.51.5",
-    "react-i18next": "^14.0.1",
+    "react-i18next": "^15.5.3",
     "react-router-dom": "^6.6.2",
     "serve-handler": "^6.1.5",
     "uuid": "^9.0.1",
