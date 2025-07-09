@@ -1,0 +1,7 @@
+{
+  "scripts": {
+    "snyk:test": "snyk test",
+    "snyk:monitor": "snyk monitor",
+    "snyk:fix": "snyk wizard"
+  }
+} 

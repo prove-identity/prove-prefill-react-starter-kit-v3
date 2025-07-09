@@ -54,21 +54,24 @@ const OtpEntry = () => {
     });
 
     useEffect(() => {
-        if (!authToken) {
-            //user needs to start from beginning
-            return navigate('/challenge');
-        }
-        resetFields();
-        sendOTP();
+        const init = async () => {
+            if (!authToken) {
+                navigate('/challenge');
+                return;
+            }
+            resetFields();
+            await sendOTP();
+        };
 
-        //on component unmount, clear the authToken 
+        init();
+
         return () => {
             setAuthToken('');
             handleCancelOtp(); 
             if(authRef.current) {
                 authRef.current.cancel(); 
             }
-        }
+        };
     }, []);
 
     const resetFields = () => {
@@ -309,7 +312,7 @@ const OtpEntry = () => {
                     <Grid container spacing={1}>
                         {otpSent ? (
                             <>
-                                <Grid item xs={12} mb={2}>
+                                <Grid size={{ xs: 12}} mb={2}>
                                     <Typography
                                         textAlign="left"
                                         component="h2"
@@ -321,7 +324,7 @@ const OtpEntry = () => {
                                         {t('otpEntry.title')}
                                     </Typography>
                                 </Grid>
-                                <Grid item xs={12} mb={3} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                <Grid size={{ xs: 12}} mb={3} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                     {otp.map((value, index) => (
                                         <TextField
                                             key={index}
@@ -349,7 +352,7 @@ const OtpEntry = () => {
                                         />
                                     ))}
                                 </Grid>
-                                <Grid item xs={12}>
+                                <Grid size={{ xs: 12}}>
                                     {errorMsg && (
                                         <Box mt={2}>
                                             <Typography color="error" textAlign="center">

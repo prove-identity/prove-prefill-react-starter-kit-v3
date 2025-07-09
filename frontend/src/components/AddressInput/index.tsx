@@ -15,7 +15,7 @@ const AddressInput = (props: AddressInputProps) => {
 
     return (
         <Grid container gap={2}>
-            <Grid item xs={12}>
+            <Grid size={{ xs: 12}}>
                 <FormTextInput
                     control={props.control}
                     name="address"
@@ -24,7 +24,7 @@ const AddressInput = (props: AddressInputProps) => {
                     disabled={props.disabled}
                 />
             </Grid>
-            <Grid item xs={12}>
+            <Grid size={{ xs: 12}}>
                 <FormTextInput
                     control={props.control}
                     name="extendedAddress"
@@ -33,7 +33,7 @@ const AddressInput = (props: AddressInputProps) => {
                     disabled={props.disabled}
                 />
             </Grid>
-            <Grid item xs={12}>
+            <Grid size={{ xs: 12}}>
                 <FormTextInput
                     control={props.control}
                     name="city"
@@ -42,7 +42,7 @@ const AddressInput = (props: AddressInputProps) => {
                     disabled={props.disabled}
                 />
             </Grid>
-            <Grid display={'flex'} gap={2} xs={12} item>
+            <Grid display={'flex'} gap={2} size={{ xs: 12}}>
                 <Controller
                     name="region"
                     control={props.control}
@@ -54,20 +54,24 @@ const AddressInput = (props: AddressInputProps) => {
                             fullWidth
                             variant="outlined"
                             disabled={props.disabled}
-                            InputProps={{
-                                sx: {
-                                    borderRadius: '12px',
-                                    '.MuiInputBase-input': {
+                            slotProps={{
+                                inputLabel: {
+                                    shrink: true,
+                                    sx: {
+                                        fontSize: '1.2rem',
+                                    },
+                                },
+                                input: {
+                                    sx: {
+                                        borderRadius: '12px',
+                                        '.MuiInputBase-input': {
                                         fontSize: '1.5rem',
                                         fontWeight: 'bold',
                                         paddingLeft: '16px',
                                     },
-                                },
-                                disableUnderline: true,
-                            }}
-                            InputLabelProps={{
-                                shrink: true,
-                                style: { fontSize: '1.2rem' },
+                                    },
+                                    disableUnderline: true,
+                                }
                             }}
                             onChange={(e) => {
                                 onChange(e);

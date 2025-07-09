@@ -34,21 +34,21 @@ const PhoneNumberInputField = ({ control, name, label, disableOutline, hideCount
                     value={value}
                     onChange={(value, info) => onChange(info.numberValue)}
                     error={!!error}
-                    inputProps={{
-                        style: {
-                            fontWeight: 'bold',
-                            boxShadow: "1",
+                    slotProps={{
+                        input: {
+                            sx: {
+                                fontWeight: 'bold',
+                                boxShadow: "1",
+                                '&.MuiTelInput-TextField p.MuiTypography-root.MuiTypography-body1': {
+                                    fontSize: '1.4rem'
+                                },
+                                '&.MuiTelInput-TextField div.MuiInputAdornment-root': {
+                                    display: hideCountryCodeInfo ? 'none' : 'flex'
+                                }
+                            }
                         }
                     }}
-                    sx={{
-                        // Font size of the country code
-                        '&.MuiTelInput-TextField p.MuiTypography-root.MuiTypography-body1': {
-                            fontSize: '1.4rem'
-                        },
-                        '&.MuiTelInput-TextField div.MuiInputAdornment-root': {
-                            display: hideCountryCodeInfo ? 'none' : 'flex'
-                        }
-                    }}
+
                     {...fieldProps}
                 />
             )}

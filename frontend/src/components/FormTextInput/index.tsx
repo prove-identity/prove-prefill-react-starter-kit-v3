@@ -16,27 +16,29 @@ const FormTextInput = ({ control, name, type, placeholder, label, startAdornment
                     label={label}
                     variant="outlined"
                     disabled={disabled}
-                    inputProps={{
-                        inputMode: type || 'text',
-                        placeholder: placeholder,
-                        maxLength: maxLength
-                    }}
-                    InputProps={{
-                        sx: {
-                            borderRadius: '12px',
-                            '.MuiInputBase-input': {
-                                fontSize: '1.5rem',
-                                fontWeight: 'bold',
-                                paddingLeft: '16px',
+                    slotProps={{
+                        inputLabel: {
+                            shrink: true,
+                            sx: {
+                                fontSize: '1.2rem',
                             },
                         },
-                        startAdornment: startAdornment
-                    }}
-                    InputLabelProps={{
-                        shrink: true,
-                        style: {
-                            fontSize: '1.2rem',
+                        htmlInput: {
+                            inputMode: type || 'text',
+                            placeholder: placeholder,
+                            maxLength: maxLength
                         },
+                        input: {
+                            sx: {
+                                borderRadius: '12px',
+                                '.MuiInputBase-input': {
+                                    fontSize: '1.5rem',
+                                    fontWeight: 'bold',
+                                    paddingLeft: '16px',
+                                },
+                            },
+                        startAdornment: startAdornment
+                        }
                     }}
                     {...fieldProps}
                 />

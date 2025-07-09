@@ -124,7 +124,7 @@ const App = () => {
     try {
       const proveAuthManager = new ProveClientSdk();
       setIsMobile(proveAuthManager.authCheck());
-      setAppEnv(import.meta.env.REACT_APP_ENV === AppEnv.PRODUCTION ? AppEnv.PRODUCTION : AppEnv.SANDBOX);
+      setAppEnv(import.meta.env.VITE_APP_ENV === AppEnv.PRODUCTION ? AppEnv.PRODUCTION : AppEnv.SANDBOX);
     } catch (e: any) {
       //default to desktop if sdk fails 
       setIsMobile(false);

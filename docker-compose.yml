@@ -4,13 +4,13 @@ services:
       context: ./frontend
       dockerfile: Dockerfile.frontend
       args:
-        REACT_APP_BASE_API_URL: ${REACT_APP_BASE_API_URL}
-        REACT_APP_ENV: ${REACT_APP_ENV}
+        VITE_APP_BASE_API_URL: ${VITE_APP_BASE_API_URL}
+        VITE_APP_ENV: ${VITE_APP_ENV}
     ports:
       - "80:80"
     environment:
-      - REACT_APP_BASE_API_URL=${REACT_APP_BASE_API_URL}
-      - REACT_APP_ENV=${REACT_APP_ENV}
+      - VITE_APP_BASE_API_URL=${VITE_APP_BASE_API_URL}
+      - VITE_APP_ENV=${VITE_APP_ENV}
   
   backend:
     build:
