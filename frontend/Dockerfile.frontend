@@ -28,7 +28,7 @@ RUN echo "$VITE_APP_ENV"
 RUN npm run build
 
 # Production environment
-FROM nginx:stable-alpine
+FROM nginx:1.29.4-alpine3.23
 
 # Copy built files from the frontend stage
 COPY --from=frontend /app/build /usr/share/nginx/html
